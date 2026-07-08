@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penghapusan Akun & Data - Duekku</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #e0e7ff;
+            --secondary: #10b981;
+            --secondary-light: #d1fae5;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-main: #f1f5f9;
+                --text-muted: #94a3b8;
+                --bg-page: #0f172a;
+                --bg-card: #1e293b;
+                --border: #334155;
+                --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+                --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+                --primary-light: rgba(79, 70, 229, 0.15);
+                --secondary-light: rgba(16, 185, 129, 0.15);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navbar / Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header {
+                background-color: rgba(15, 23, 42, 0.8);
+            }
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        /* Container */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Content Blocks */
+        section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .section-icon {
+                color: #818cf8;
+            }
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-main);
+        }
+
+        /* Step List */
+        .step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 28px;
+            height: 28px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .step-number {
+                color: #818cf8;
+            }
+        }
+
+        .step-content strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background-color: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.25rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Email Request Card */
+        .request-card {
+            background-color: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .request-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .request-card h3 {
+                color: #818cf8;
+            }
+        }
+
+        .request-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .request-card li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .request-card li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .email-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="brand">
+                <img src="duekku_logo.png" alt="Duekku Logo">
+                <span class="brand-name">Duekku</span>
+            </a>
+            <span class="badge">Hapus Data</span>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="hero">
+            <h1>Penghapusan Akun & Data Pengguna</h1>
+            <p>Panduan lengkap cara menghapus akun dan seluruh data keuangan Anda di aplikasi Duekku.</p>
+        </div>
+
+        <main>
+            <section id="informasi-umum">
+                <h2><div class="section-icon">i</div>Informasi Penting</h2>
+                <p>Kami di <strong>Duekku</strong> sangat menghormati hak privasi dan kendali penuh Anda atas data pribadi. Sesuai dengan kebijakan Google Play Store, kami menyediakan opsi yang mudah untuk menghapus akun Anda beserta seluruh data terkait.</p>
+                
+                <div class="highlight-box">
+                    <p>⚠️ PENTING: Tindakan penghapusan akun bersifat PERMANEN. Setelah akun dihapus, seluruh data transaksi, kantong keuangan, dan file bukti kuitansi Anda akan dihapus selamanya dari server kami dan TIDAK DAPAT dipulihkan.</p>
+                </div>
+
+                <p><strong>Data yang akan dihapus secara permanen meliputi:</strong></p>
+                <div class="request-card" style="margin-top: 0;">
+                    <ul>
+                        <li>Data Akun Utama (Nama Lengkap, Alamat Email, Foto Profil).</li>
+                        <li>Daftar Kantong Keuangan (Pockets) beserta rincian saldo.</li>
+                        <li>Seluruh Catatan Riwayat Transaksi (Pemasukan, Pengeluaran, Transfer).</li>
+                        <li>Berkas Bukti Foto Nota/Struk Transaksi yang telah Anda unggah ke cloud storage.</li>
+                        <li>Data Statistik & Agregat Laporan Keuangan Bulanan Anda.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="cara-in-app">
+                <h2><div class="section-icon">📱</div>Cara Hapus Akun dari Dalam Aplikasi</h2>
+                <p>Cara paling cepat dan instan untuk menghapus akun Anda secara mandiri adalah melalui menu pengaturan di dalam aplikasi:</p>
+                
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Buka Aplikasi & Masuk</strong>
+                            <p>Buka aplikasi Duekku di ponsel Anda dan pastikan Anda telah masuk (login) ke akun yang ingin dihapus.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Pergi ke Menu Profil</strong>
+                            <p>Ketuk tab menu <strong>Profil Saya</strong> (ikon pengguna) di pojok kanan bawah layar utama aplikasi.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Ketuk Menu "Ubah Akun"</strong>
+                            <p>Di daftar menu profil Anda, ketuk menu <strong>Ubah Akun</strong>.</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Pilih Opsi "Hapus Akun"</strong>
+                            <p>Pada lembar menu yang muncul dari bawah layar, ketuk pilihan <strong>Hapus Akun</strong> (ikon tempat sampah berwarna merah).</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Konfirmasi Penghapusan</strong>
+                            <p>Akan muncul dialog konfirmasi. Bacalah rincian akibat penghapusan secara saksama, lalu ketuk tombol <strong>Hapus</strong> untuk memproses penghapusan permanen akun Anda.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="cara-online">
+                <h2><div class="section-icon">🌐</div>Permohonan Penghapusan Akun Online (Tanpa Aplikasi)</h2>
+                <p>Jika Anda sudah menghapus aplikasi dari perangkat Anda atau tidak dapat masuk kembali ke dalam aplikasi, Anda dapat meminta penghapusan akun dan data Anda secara manual via email tanpa harus login.</p>
+                
+                <div class="request-card">
+                    <h3>Kirimkan Permohonan Penghapusan:</h3>
+                    <p>Kirimkan email permohonan Anda ke alamat email dukungan kami berikut:</p>
+                    <p>📧 Email: <a class="email-link" href="mailto:fathur.rahman12300@gmail.com">fathur.rahman12300@gmail.com</a></p>
+                    <p><strong>Dengan format email sebagai berikut:</strong></p>
+                    <ul>
+                        <li><strong>Subjek Email:</strong> Permohonan Penghapusan Akun Aplikasi Duekku</li>
+                        <li><strong>Alamat Email Terdaftar:</strong> (Masukkan alamat email yang Anda gunakan di aplikasi)</li>
+                        <li><strong>Nama Lengkap Pengguna:</strong> (Masukkan nama profil Anda di aplikasi)</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">*Kami akan memproses permohonan Anda dan menghapus seluruh data Anda dari server kami dalam waktu maksimal 2-3 hari kerja. Anda akan menerima email konfirmasi jika proses penghapusan data telah selesai dilakukan.</p>
+                </div>
+            </section>
+
+            <a href="index.html" class="back-link">
+                <span>←</span> Kembali ke Kebijakan Privasi
+            </a>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Duekku. All Rights Reserved. Kebijakan Privasi & Ketentuan Layanan.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
