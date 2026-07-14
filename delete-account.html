@@ -355,6 +355,63 @@
             color: var(--primary-hover);
             text-decoration: underline;
         }
+
+        /* Mobile optimization & WebView Mode */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 1rem !important;
+            }
+            .brand img {
+                width: 32px !important;
+                height: 32px !important;
+            }
+            .brand-name {
+                font-size: 1.2rem !important;
+            }
+            .hero {
+                padding: 2.5rem 1rem 1rem 1rem !important;
+            }
+            .hero h1 {
+                font-size: 1.75rem !important;
+            }
+            .main-container {
+                padding: 1rem !important;
+                gap: 1.5rem !important;
+            }
+            section {
+                padding: 1.5rem !important;
+                border-radius: var(--radius-sm) !important;
+            }
+            footer {
+                padding: 2rem 1rem !important;
+            }
+        }
+
+        body.webview-mode header,
+        body.webview-mode footer,
+        body.webview-mode .back-link {
+            display: none !important;
+        }
+        body.webview-mode .hero {
+            padding-top: 1.5rem !important;
+            padding-bottom: 0.5rem !important;
+        }
+        body.webview-mode .hero h1 {
+            font-size: 1.75rem !important;
+        }
+        body.webview-mode .main-container {
+            padding: 1rem !important;
+            gap: 1.5rem !important;
+            grid-template-columns: 1fr !important;
+        }
+        body.webview-mode aside {
+            display: none !important;
+        }
+        body.webview-mode section {
+            padding: 1.25rem !important;
+            border-radius: var(--radius-sm) !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body>
@@ -473,5 +530,12 @@
         </footer>
     </div>
 
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('webview') === 'true') {
+            document.body.classList.add('webview-mode');
+        }
+    </script>
 </body>
+
 </html>
