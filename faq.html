@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanya Jawab (FAQ) - Duekku</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #e0e7ff;
+            --secondary: #10b981;
+            --secondary-light: #d1fae5;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-main: #f1f5f9;
+                --text-muted: #94a3b8;
+                --bg-page: #0f172a;
+                --bg-card: #1e293b;
+                --border: #334155;
+                --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+                --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+                --primary-light: rgba(79, 70, 229, 0.15);
+                --secondary-light: rgba(16, 185, 129, 0.15);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navbar / Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            header {
+                background-color: rgba(15, 23, 42, 0.8);
+            }
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .badge {
+                color: #818cf8;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem 2rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Layout Grid */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            position: relative;
+        }
+
+        @media (max-width: 968px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        @media (max-width: 968px) {
+            aside {
+                position: relative;
+                top: 0;
+                display: none;
+            }
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--primary);
+            background-color: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        /* Main Content */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .section-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .section-icon {
+                color: #818cf8;
+            }
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        section p {
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        /* FAQ Q&A Style */
+        .faq-item {
+            background-color: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .faq-question {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .faq-question {
+                color: #818cf8;
+            }
+        }
+
+        .faq-answer {
+            color: var(--text-main);
+            font-size: 0.975rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Details */
+        .contact-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-label {
+            font-weight: 700;
+            min-width: 100px;
+        }
+
+        /* Footer links styling */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Print stylesheet */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            header,
+            aside,
+            footer {
+                display: none !important;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            section {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="brand">
+                <img src="duekku_logo.png" alt="Duekku Logo">
+                <span class="brand-name">Duekku</span>
+            </a>
+            <span class="badge">Tanya Jawab (FAQ)</span>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Pertanyaan yang Sering Diajukan (FAQ)</h1>
+        <p>Temukan jawaban untuk pertanyaan umum mengenai penggunaan aplikasi Duekku.</p>
+    </div>
+
+    <div class="main-container">
+        <aside>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#tentang-aplikasi">1. Tentang Duekku</a></li>
+                <li class="nav-item"><a href="#fitur-penggunaan">2. Fitur & Penggunaan</a></li>
+                <li class="nav-item"><a href="#keamanan-data">3. Keamanan Data</a></li>
+                <li class="nav-item"><a href="#akun-hapus">4. Akun & Hapus Data</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section id="tentang-aplikasi">
+                <div class="section-header">
+                    <div class="section-icon">1</div>
+                    <h2>Tentang Duekku</h2>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: Apa itu aplikasi Duekku?</div>
+                    <div class="faq-answer">
+                        Duekku adalah aplikasi pelacak keuangan pribadi (personal finance tracker) yang dirancang untuk membantu Anda mencatat pemasukan, pengeluaran, transfer antar kantong (dompet), dan melihat laporan keuangan secara real-time.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Apakah aplikasi Duekku gratis digunakan?</div>
+                    <div class="faq-answer">
+                        Ya, aplikasi Duekku sepenuhnya gratis untuk digunakan untuk mencatat keuangan pribadi Anda.
+                    </div>
+                </div>
+            </section>
+
+            <section id="fitur-penggunaan">
+                <div class="section-header">
+                    <div class="section-icon">2</div>
+                    <h2>Fitur & Penggunaan</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Bagaimana cara kerja fitur "Pindah Saldo"?</div>
+                    <div class="faq-answer">
+                        Fitur Pindah Saldo memungkinkan Anda untuk memindahkan uang dari satu kantong (misalnya "Dompet Utama") ke kantong lainnya (misalnya "Tabungan"). Anda cukup memilih kantong asal dan tujuan, memasukkan nominal, mengonfirmasi di dialog konfirmasi, dan saldo akan terbarui seketika.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Apakah saya bisa mengekspor laporan transaksi keuangan saya?</div>
+                    <div class="faq-answer">
+                        Ya. Duekku memiliki fitur untuk mengunduh laporan riwayat transaksi Anda ke dalam berkas Excel (.xlsx) atau menyimpannya dalam format PDF langsung dari menu laporan.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Mengapa saya harus melampirkan foto pada transaksi?</div>
+                    <div class="faq-answer">
+                        Melampirkan foto (nota/struk belanja) bersifat opsional. Fitur ini berguna sebagai bukti fisik pengeluaran Anda sehingga catatan keuangan Anda lebih lengkap dan mudah divalidasi di kemudian hari.
+                    </div>
+                </div>
+            </section>
+
+            <section id="keamanan-data">
+                <div class="section-header">
+                    <div class="section-icon">3</div>
+                    <h2>Keamanan Data</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Di mana data keuangan saya disimpan?</div>
+                    <div class="faq-answer">
+                        Data keuangan dan profil Anda disimpan secara aman di infrastruktur Google Firebase (Firestore Database & Cloud Storage). Data tersebut dikaitkan langsung dengan akun terdaftar Anda agar dapat diakses dari perangkat mana pun secara sinkron.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Apakah Duekku membagikan data transaksi saya kepada pihak lain?</div>
+                    <div class="faq-answer">
+                        Tidak. Kami sangat menghargai privasi Anda. Data keuangan Anda bersifat pribadi dan tidak akan pernah dijual, disewakan, atau dibagikan kepada pengiklan atau pihak ketiga lainnya.
+                    </div>
+                </div>
+            </section>
+
+            <section id="akun-hapus">
+                <div class="section-header">
+                    <div class="section-icon">4</div>
+                    <h2>Akun & Hapus Data</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Bagaimana cara menghapus akun dan seluruh data saya?</div>
+                    <div class="faq-answer">
+                        Anda dapat menghapus akun Anda secara langsung melalui menu <strong>Pengaturan Profil</strong> di dalam aplikasi, lalu pilih opsi <strong>Hapus Akun</strong>. Proses ini akan menghapus data profil, seluruh riwayat transaksi, kantong keuangan, dan file media Anda secara permanen dari server kami.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: Apakah data yang sudah dihapus bisa dipulihkan kembali?</div>
+                    <div class="faq-answer">
+                        Tidak. Demi alasan keamanan dan privasi, proses penghapusan data bersifat permanen dan tidak dapat dibatalkan atau dipulihkan kembali dengan metode apa pun.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Duekku. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Kebijakan Privasi</a>
+            <a href="terms.html">Syarat & Ketentuan</a>
+            <a href="delete-account.html">Hapus Akun</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

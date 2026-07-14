@@ -333,6 +333,28 @@
             font-size: 0.9rem;
             margin: 0;
         }
+
+        /* Footer links styling */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -441,7 +463,13 @@
         </main>
 
         <footer>
-            <p>&copy; 2026 Duekku. All Rights Reserved. Kebijakan Privasi & Ketentuan Layanan.</p>
+            <p>&copy; 2026 Duekku. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Kebijakan Privasi</a>
+                <a href="terms.html">Syarat & Ketentuan</a>
+                <a href="delete-account.html">Hapus Akun</a>
+                <a href="faq.html">FAQ</a>
+            </div>
         </footer>
     </div>
 
